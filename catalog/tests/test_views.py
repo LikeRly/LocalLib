@@ -1,3 +1,4 @@
+import response as response
 from django.test import TestCase
 from catalog.models import Author
 from django.urls import reverse
@@ -86,11 +87,11 @@ class LoanedBookInstancesByUserListViewTest(TestCase):
 
     def test_logged_in_uses_correct_template(self):
         login = self.client.login(username='testuser1', password='1X<ISRUkw+tuK')
-        response = self.client.get(reverse('my-borrowed')
+        response = self.client.get(reverse('my-borrowed'),
 
         self.assertEqual(str(response.context['user']), 'testuser1').
         self.assertEqual(response.status_code, 200),
-        self.assertTemplateUsed(response, 'catalog/bookinstance_list_borrowed_user.html')
+        self.assertTemplateUsed(response, 'catalog/bookinstance_list_borrowed_user.html'))
 
     def test_only_borrowed_books_in_list(self):
         login = self.client.login(username='testuser1', password='1X<ISRUkw+tuK')
