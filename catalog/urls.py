@@ -2,7 +2,6 @@ from django.urls import path
 
 from . import views
 
-
 urlpatterns = [
     path('', views.index, name='index'),
     path('books/', views.BookListView.as_view(), name='books'),
@@ -12,27 +11,21 @@ urlpatterns = [
          views.AuthorDetailView.as_view(), name='author-detail'),
 ]
 
-
 urlpatterns += [
     path('mybooks/', views.LoanedBooksByUserListView.as_view(), name='my-borrowed'),
     path(r'borrowed/', views.LoanedBooksAllListView.as_view(), name='all-borrowed'),  # Added for challenge
 ]
 
-
-# Add URLConf for librarian to renew a book.
 urlpatterns += [
     path('book/<uuid:pk>/renew/', views.renew_book_librarian, name='renew-book-librarian'),
 ]
 
-
-# Add URLConf to create, update, and delete authors
 urlpatterns += [
     path('author/create/', views.AuthorCreate.as_view(), name='author-create'),
     path('author/<int:pk>/update/', views.AuthorUpdate.as_view(), name='author-update'),
     path('author/<int:pk>/delete/', views.AuthorDelete.as_view(), name='author-delete'),
 ]
 
-# Add URLConf to create, update, and delete books
 urlpatterns += [
     path('book/create/', views.BookCreate.as_view(), name='book-create'),
     path('book/<int:pk>/update/', views.BookUpdate.as_view(), name='book-update'),
@@ -40,7 +33,6 @@ urlpatterns += [
 ]
 
 
-# Add URLConf to list, view, create, update, and delete genre
 urlpatterns += [
     path('genres/', views.GenreListView.as_view(), name='genres'),
     path('genre/<int:pk>', views.GenreDetailView.as_view(), name='genre-detail'),
@@ -61,7 +53,6 @@ urlpatterns += [
          views.LanguageDelete.as_view(), name='language-delete'),
 ]
 
-# Add URLConf to list, view, create, update, and delete bookinstances
 urlpatterns += [
     path('bookinstances/', views.BookInstanceListView.as_view(), name='bookinstances'),
     path('bookinstance/<uuid:pk>', views.BookInstanceDetailView.as_view(),
